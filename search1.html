@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+ 	<html>
+ 	</body>
+ 		<form>
+        <input type="text" name ="text"  placeholder="search here" onkeyup="searchItem()" id="s">
+ 		<input type="button" name="text"  value="search" onclick="searchItem()">
+ 		</form>
+ 	    Item:<input type ="text" style="margin:18px" id="p1">
+ 	    Price:<input type ="number" style="margin:18px" id="p2">
+ 
+       <button onclick="dataInsert()">submit</button>
+     <style>
+/*#t1,th,td{
+  border: 1px solid black;
+  border: inline display;
+
+}
+#t2,th,td{
+	border:1px solid green;
+	border:inline display;margin:50px,20px;
+}*/
+
+</style>
+
+
+    <table >
+ 	   	<tr>
+ 	   		<th>ITEM</th>
+ 	   		<th>Price</th>
+ 	   	</tr>
+ 	   	<tbody id="t1">
+ 	   		
+ 	   	</tbody>
+ 	   </table>
+ 	   <table id = "r1">
+ 	   	<tr>
+ 	   		<th>ITEM</th>
+ 	   		<th>Price</th>
+ 	   	</tr>
+ 	   	<tbody id="t2">
+ 	   		
+ 	   	</tbody>
+ 	   </table>
+
+ 	
+ 	  	<script>
+ 	 
+ 	  		var arr=[];
+ 	  		function dataInsert(){
+ 	  			var Name=document.getElementById("p1").value
+ 	  			var Price=document.getElementById("p2").value
+ 	  			var ob ={"Name":Name,"Number":Price}
+ 	  			arr.push(ob);
+ 	  			let l="";
+ 	  		  arr.forEach((item)=>{
+ 	  		 	l= `<tr>
+                <td>${item.Name}</td>
+                <td>${item.Number}</td>
+                </tr>`
+                 })
+ 	  		  var e=document.getElementById("t1");
+                e.innerHTML +=l;
+ 	  		 document.getElementById("p1").value=' ';
+ 	  		 document.getElementById("p2").value=' ';
+
+ 	  		}
+ 	  		function searchItem(){
+ 	  			var input=document.getElementById("s").value;
+ 	  			let li="";
+ 	  			var eleTable=document.getElementById("r1")
+ 	  			var tableRow= eleTable.getElementsByTagName("table")
+ 	  			var rowCount=tableRow.length;
+ 	  			for(var x=rowCount-1;x>0;x--){
+ 	  				eleTable.removeChild(tableRow[x]);
+ 	  			}
+ 	  			arr.forEach((item)=>{
+ 	  				if(input){
+ 	  				if(item.Name.includes(input)){
+ 	  					 li +=`<tr>
+ 	  					         <td>${item.Name}</td>
+ 	  					         <td>${item.Number}</td>
+ 	  					         </tr>`
+ 	  					         
+ 	  				}
+ 	  			}
+ 	  			
+ 	  					
+
+ 	  			});
+ 	  			tableRow1=document.getElementById("t2");
+ 	  			tableRow1.innerHTML=li;
+ 	  			
+
+
+ 	  		}
+
+ 	    </script>
+
+ 	</body>
+	</html>
